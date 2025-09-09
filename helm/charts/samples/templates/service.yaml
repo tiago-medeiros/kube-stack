@@ -5,7 +5,7 @@ metadata:
   name: {{- .Values.app.name }}
   namespace: {{- .Values.app.name }}
   labels:
-    app: {{- .Values.app.name" }}
+    app: {{- .Values.app.name }}
 spec:
   type: {{- .Values.service.type | default ClusterIP }}
   ports:
