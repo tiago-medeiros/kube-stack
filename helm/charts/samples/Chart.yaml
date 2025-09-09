@@ -1,5 +1,5 @@
 apiVersion: 2
-name: kube-stack
+name: samples
 description: A basic Helm chart used only for study purposes
 type: application
 version: 0.1.0
