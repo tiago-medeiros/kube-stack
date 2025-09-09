@@ -3,9 +3,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{- .Values.app.name }}
-  namespace: {{- Values.app.name }}
+  namespace: {{- .Values.app.name }}
   labels:
-    app: {{- Values.app.name" }}
+    app: {{- .Values.app.name" }}
 spec:
   type: {{- .Values.service.type | default ClusterIP }}
   ports:
@@ -13,5 +13,5 @@ spec:
       targetPort: {{- .Values.service.targetPort | default http }} 
       protocol: {{- .Values.service.protocol | default TCP}} 
   selector:
-    app: {{- Values.app.name }}
+    app: {{- .Values.app.name }}
 {{- end}}
