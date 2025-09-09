@@ -9,6 +9,6 @@ entries:
     name: samples
     type: application
     urls:
-    - https://tiago.medeiros.lima.github.io/kube-stack/helm/charts/packages/samples-0.1.0.tgz
+    - https://tiago-medeiros.github.io/kube-stack/helm/charts/packages/samples-0.1.0.tgz
     version: 0.1.0
 generated: "2025-09-09T16:18:49.184246081-03:00"
