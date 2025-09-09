@@ -7,11 +7,11 @@ metadata:
   labels:
     app: {{- .Values.app.name }}
 spec:
-  type: {{- .Values.service.type | default ClusterIP }}
+  type: {{- .Values.service.type | default "ClusterIP" }}
   ports:
     - port: {{- .Values.service.port }}
-      targetPort: {{- .Values.service.targetPort | default http }} 
-      protocol: {{- .Values.service.protocol | default TCP}} 
+      targetPort: {{- .Values.service.targetPort | default "http" }} 
+      protocol: {{- .Values.service.protocol | default "TCP"}} 
   selector:
     app: {{- .Values.app.name }}
 {{- end}}
