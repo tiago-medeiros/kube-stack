@@ -29,4 +29,17 @@ spec:
             limits:
               memory: {{ .resources.limits.memory | default "200Mi" }}
               cpu:  {{ .resources.limits.cpu | default "500m" }}
+          env:
+            {{- if .env }}
+            {{- range .env }}
+            - name: {{ .name }}
+              value: {{ .value | quote}}
+            {{- end }}
+            {{- end }}
+          envFrom:
+            {{- if $.Values.configmap }}
+            - configMapRef:
+                name: {{ .name }}
+            {{- end }} 
+            
 {{- end}}
