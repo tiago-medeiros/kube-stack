@@ -2,16 +2,16 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{- .Values.app.name }}
-  namespace: {{- .Values.app.name }}
+  name: {{ .name }}
+  namespace: {{ .name }}
   labels:
-    app: {{- .Values.app.name }}
+    app: {{ .name }}
 spec:
-  type: {{- .Values.service.type | default "ClusterIP" }}
+  type: {{ .service.type | default "ClusterIP" }}
   ports:
-    - port: {{- .Values.service.port }}
-      targetPort: {{- .Values.service.targetPort | default "http" }} 
-      protocol: {{- .Values.service.protocol | default "TCP"}} 
+    - port: {{ .service.port }}
+      targetPort: {{ .service.targetPort | default "http" }} 
+      protocol: {{ .service.protocol | default "TCP"}} 
   selector:
-    app: {{- .Values.app.name }}
+    app: {{.name }}
 {{- end}}

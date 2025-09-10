@@ -1,22 +1,24 @@
 {{- range .Values.app }}
-{{- if .Values.ingress.enabled }}
+{{- if .ingress.enabled }}
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{- .Values.app.name }}
-  namespace: {{- .Values.app.name }}
+  name: {{ .name }}
+  namespace: {{ .name }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   ingressClassName:  nginx
   rules:
-    - host: {{- .Values.app.ingress.host }}
+    - host: {{ .ingress.host }}
       http:
         paths:
-          - path: {{- .Values.app.ingress.path }}
-            pathType: 
+          - path: {{ .ingress.path }}
+            pathType: {{ .ingress.pathType | default "Prefix" }}
             backend:
               service:
-                name: {{- .Values.app.name }}
+                name: {{ .name }}
                 port:
-                  number: {{- .Values.service.port }}
+                  number: {{ .service.port }}
+{{- end }}
+{{- end }}
