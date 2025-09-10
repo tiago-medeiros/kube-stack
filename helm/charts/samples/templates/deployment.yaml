@@ -22,4 +22,11 @@ spec:
             - name: http
               containerPort: {{ .service.port }}
               protocol: TCP
+          resources:
+            requests:
+              memory: {{ .resources.requests.memory | default "50Mi" }}
+              cpu: {{ .resources.requests.cpu | default "100m" }}
+            limits:
+              memory: {{ .resources.limits.memory | default "200Mi" }}
+              cpu:  {{ .resources.limits.cpu | default "500m" }}
 {{- end}}
