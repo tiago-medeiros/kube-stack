@@ -36,10 +36,23 @@ spec:
               value: {{ .value | quote}}
             {{- end }}
             {{- end }}
+           {{- if $.Values.configmap }}
           envFrom:
-            {{- if $.Values.configmap }}
             - configMapRef:
                 name: {{ .name }}
-            {{- end }} 
+            {{- end }}
+          livenessProbe:
+            httpGet:
+              path: {{ .liveness.path | default "/healthz" }}
+              port: {{ .service.port }} 
+            initialDelaySeconds: {{ .liveness.delay | default 15 }}
+            periodSeconds: {{ .liveness.period | default 20 }}
+
+          readinessProbe:
+            httpGet:
+              path: {{ .readiness.path | default "/ready" }}
+              port: {{ .service.port }} 
+            initialDelaySeconds: {{ .readiness.delay | default 10 }}
+            periodSeconds: {{ .readiness.period | default 20 }}
             
 {{- end}}
