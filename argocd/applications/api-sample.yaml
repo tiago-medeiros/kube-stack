@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: guestbook-app
+  namespace: argocd # Or the namespace where your Argo CD instance is running
+spec:
+  project: kube-stack # The Argo CD project the application belongs to
+  source:
+    repoURL: https://github.com/tiago-medeiros/api-sample.git
+    targetRevision: HEAD
+    path: ./deploy
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: api-sample
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
