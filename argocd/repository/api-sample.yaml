@@ -7,10 +7,10 @@ metadata:
     argocd.argoproj.io/secret-type: repository
 stringData:
   url: https://github.com/tiago-medeiros/api-sample.git
+  # Optional: Project to scope this repository credential to.
+  project: kube-stack
   #username: your-username
   #password: your-password
-  # Optional: Project to scope this repository credential to.
-  # project: my-argocd-project
   # Optional: Set to "true" to ignore server's TLS certificate validity (use with caution).
   # insecure: "true" 
   # Optional: Enable Git LFS for this repository.
