@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: kube-stack
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  description: Kube-Stack is my home lab Kubernetes cluster
+  sourceRepos:
+    - https://tiago-medeiros.github.io/kube-stack/helm/charts
+  destinations:
+    - namespace: '*'
+      server: https://kubernetes.default.svc
+      name: in-cluster
+  clusterResourceWhitelist:
+    - group: '*'
+      kind: 'Namespace'
+  namespaceResourceBlacklist:
+  - group: ''
+    kind: ResourceQuota
+  - group: ''
+    kind: LimitRange
+  - group: ''
+    kind: NetworkPolicy
