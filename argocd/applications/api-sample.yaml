@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: guestbook-app
+  name: api-sample
   namespace: argocd # Or the namespace where your Argo CD instance is running
 spec:
   project: kube-stack # The Argo CD project the application belongs to
