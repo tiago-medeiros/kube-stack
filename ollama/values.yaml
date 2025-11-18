@@ -1,0 +1,24 @@
+ollama:
+  gpu:
+    # -- Enable GPU integration
+    enabled: true
+
+    # -- GPU type: 'nvidia' or 'amd'
+    type: 'nvidia'
+
+    # -- Specify the number of GPU to 1
+    number: 1
+
+  # -- List of models to pull at container startup
+  models:
+    pull:
+      - qwen2.5-coder:14b
+
+ingress:
+  enabled: true
+  hosts:
+    - host: ollama.localhost
+      paths:
+        - path: /
+          pathType: Prefix
+
