@@ -19,21 +19,14 @@ nodes:
     hostPort: 443
     protocol: TCP
 - role: worker
-  extraMounts:
-    - hostPath: /dev/null
-      containerPath: /var/run/nvidia-container-devices/all
-    - hostPath: /mnt/sdb/pv
-      containerPath: /data
+  gpus: true
   labels:
     az: us-east-1a
     size: m5.xlarge 
     type: spot
 - role: worker
   extraMounts:
-    - hostPath: /dev/null
-      containerPath: /var/run/nvidia-container-devices/all
-    - hostPath: /mnt/sdb/pv
-      containerPath: /data
+  gpus: true
   labels:
     az: us-east-1a
     size: c5.2xlarge 
