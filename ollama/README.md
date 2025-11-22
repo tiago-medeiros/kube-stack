@@ -6,14 +6,12 @@ Ollama experiments and notes
 
 Add this configuration in /etc/hosts
 
-```
-echo "127.0.0.1 ollama.localhost" > /etc/hosts
+```shell
+echo "127.0.0.1 ollama.local" > /etc/hosts
 ``` 
 
 
 # Kubernetes
-```
-
 Add [Ollama Helm repo](https://artifacthub.io/packages/helm/ollama-helm/ollama) 
 
 
