@@ -12,12 +12,12 @@ ollama:
   # -- List of models to pull at container startup
   models:
     pull:
-      - qwen2.5-coder:14b
+      - qwen3-coder:latest
 
 ingress:
   enabled: true
   hosts:
-    - host: ollama.localhost
+    - host: ollama.local
       paths:
         - path: /
           pathType: Prefix
