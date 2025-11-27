@@ -1,0 +1,41 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: kubecraft
+networking:
+  ipFamily: ipv4
+nodes:
+- role: control-plane
+  kubeadmConfigPatches:
+    - |
+      kind: InitConfiguration
+      nodeRegistration:
+        kubeletExtraArgs:
+          node-labels: "ingress-ready=true"
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+- role: worker
+  extraMounts:
+    - hostPath: /dev/kfd
+      containerPath: /dev/kfd
+    - hostPath: /dev/dri
+      containerPath: /dev/dri
+  labels:
+    az: us-east-1a
+    size: m5.xlarge 
+    type: spot
+- role: worker
+  extraMounts:
+    - hostPath: /dev/kfd
+      containerPath: /dev/kfd
+    - hostPath: /dev/dri
+      containerPath: /dev/dri
+  labels:
+    az: us-east-1a
+    size: c5.2xlarge 
+    type: ondemand
+  
