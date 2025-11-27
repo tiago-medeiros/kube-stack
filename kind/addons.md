@@ -1,6 +1,6 @@
 # Kind Addons
 
-## Enable GPU support
+## Enable Nvidia GPU support
 [Nvidia toolkit setup](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
 #### Install NVIDIA container toolkit on Arch
@@ -32,7 +32,8 @@ helm install --wait --generate-name \
 
 #### Ingress NGINX
 ```shell
-kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/main/deploy/static/provider/kind/deploy.yaml
+kubectl apply -f ingress-controler.yaml
 
 ```
 
+## Enable AMD GPU support
