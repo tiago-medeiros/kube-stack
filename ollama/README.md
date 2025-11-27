@@ -18,7 +18,7 @@ Add [Ollama Helm repo](https://artifacthub.io/packages/helm/ollama-helm/ollama)
 ```shell
 helm repo add ollama-helm https://otwld.github.io/ollama-helm/
 helm repo update
-helm install -f values.yaml ollama ollama-helm/ollama --namespace ollama --create-namespace
+helm install -f values.yaml ollama otwld/ollama --namespace ollama --create-namespace
 ```
 
 
