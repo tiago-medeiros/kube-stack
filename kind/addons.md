@@ -9,7 +9,8 @@
 sudo pacman -S nvidia-container-toolkit
 ```
 
-#### Configure NVIDIA
+#### Configure NVIDIA  integration with docker
+
 ```shell
 sudo nvidia-ctk runtime configure --runtime=docker --set-as-default
 
@@ -22,6 +23,7 @@ sudo sed -i '/accept-nvidia-visible-devices-as-volume-mounts/c\accept-nvidia-vis
 ```
 
 #### Install Nvidia GPU operator
+
 ```shell
 helm repo add nvidia https://helm.ngc.nvidia.com/nvidia || true
 helm repo update
@@ -30,10 +32,28 @@ helm install --wait --generate-name \
      nvidia/gpu-operator --set driver.enabled=false
 ```
 
-#### Ingress NGINX
+## Enable AMD GPU support
+
+#### Install cert-manager (required by amd-gpu-operator)
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+helm install cert-manager jetstack/cert-manager \
+                    --namespace cert-manager \
+                    --create-namespace \
+                    --version v1.15.1 \
+                    --set crds.enabled=true
+
+#### Install amd-gpu-operator
+helm repo add rocm https://rocm.github.io/gpu-operator
+helm repo update
+helm install amd-gpu-operator rocm/gpu-operator-charts \
+        --namespace kube-amd-gpu --create-namespace \
+        --version=v1.3.0
+
+
+
+## Ingress NGINX
 ```shell
 kubectl apply -f ingress-controler.yaml
 
 ```
-
-## Enable AMD GPU support
