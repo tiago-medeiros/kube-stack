@@ -507,7 +507,7 @@ spec:
       dnsPolicy: ClusterFirst
       nodeSelector:
         kubernetes.io/os: linux
-        kubernetes.io/hostname: kubecraft-control-plane
+        kubernetes.io/hostname: kube-stack-control-plane
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 0
       tolerations:
