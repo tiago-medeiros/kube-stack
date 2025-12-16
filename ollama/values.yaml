@@ -17,7 +17,7 @@ ollama:
 ingress:
   enabled: true
   hosts:
-    - host: ollama.local
+    - host: ollama.io
       paths:
         - path: /
           pathType: Prefix
