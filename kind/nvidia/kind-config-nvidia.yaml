@@ -12,8 +12,6 @@ nodes:
     nodeRegistration:
       kubeletExtraArgs:
         node-labels: "ingress-ready=true"
-  system-reserved: cpu=500m,memory=512Mi
-  kube-reserved: cpu=500m,memory=512Mi
   extraPortMappings:
   - containerPort: 80
     hostPort: 80
