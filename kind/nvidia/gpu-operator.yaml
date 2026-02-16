@@ -1,0 +1,35 @@
+operator:
+  defaultRuntime: containerd
+  useHostMounts: true
+
+# Desabilitar driver no cluster Kind (usa driver do host)
+driver:
+  enabled: false
+  repoConfig:
+    configMapName: ""
+
+# Desabilitar toolkit (usa NVIDIA Container Toolkit do host)
+toolkit:
+  enabled: false
+
+# Habilitar apenas devicePlugin e runtime
+devicePlugin:
+  enabled: true
+  image:
+    repository: nvcr.io/nvidia/k8s-device-plugin
+    tag: v0.16.0-ubuntu22.04
+
+runtime:
+  enabled: true
+  class:
+    use: true
+    name: nvidia
+
+validator:
+  enabled: true
+  image:
+    repository: nvcr.io/nvidia/cloud-native/gpu-operator-validator
+    tag: v24.9.0
+
+gfd:
+  enabled: true

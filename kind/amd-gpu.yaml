@@ -35,7 +35,7 @@ nodes:
     - hostPath: /dev/dri
       containerPath: /dev/dri
   labels:
-    az: us-east-1a
+    az: us-east-1b
     size: c5.2xlarge 
     type: ondemand
   

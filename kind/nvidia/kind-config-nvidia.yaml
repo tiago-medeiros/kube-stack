@@ -1,0 +1,104 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: kube-stack
+networking:
+  ipFamily: ipv4
+nodes:
+- role: control-plane
+  image: kindest/node:v1.35.0
+  kubeadmConfigPatches:
+  - |
+    kind: InitConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress-ready=true"
+  system-reserved: cpu=500m,memory=512Mi
+  kube-reserved: cpu=500m,memory=512Mi
+  extraPortMappings:
+  - containerPort: 80
+    hostPort: 80
+    protocol: TCP
+  - containerPort: 443
+    hostPort: 443
+    protocol: TCP
+
+- role: worker
+  image: kindest/node:v1.35.0
+  extraMounts:
+  - hostPath: /dev/nvidia0
+    containerPath: /dev/nvidia0
+    propagation: HostToContainer
+  - hostPath: /dev/nvidiactl
+    containerPath: /dev/nvidiactl
+    propagation: HostToContainer
+  - hostPath: /dev/nvidia-uvm
+    containerPath: /dev/nvidia-uvm
+    propagation: HostToContainer
+  - hostPath: /dev/nvidia-modeset
+    containerPath: /dev/nvidia-modeset
+    propagation: HostToContainer
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+    propagation: HostToContainer
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+    propagation: HostToContainer
+  labels:
+    az: us-east-1a
+    size: p3.2xlarge
+    type: ondemand
+    gpu.vendor: nvidia
+
+- role: worker
+  image: kindest/node:v1.35.0
+  extraMounts:
+  - hostPath: /dev/nvidia1
+    containerPath: /dev/nvidia1
+    propagation: HostToContainer
+  - hostPath: /dev/nvidiactl
+    containerPath: /dev/nvidiactl
+    propagation: HostToContainer
+  - hostPath: /dev/nvidia-uvm
+    containerPath: /dev/nvidia-uvm
+    propagation: HostToContainer
+  - hostPath: /dev/nvidia-modeset
+    containerPath: /dev/nvidia-modeset
+    propagation: HostToContainer
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+    propagation: HostToContainer
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+    propagation: HostToContainer
+  labels:
+    az: us-east-1b
+    size: p3.2xlarge
+    type: ondemand
+    gpu.vendor: nvidia
+    
+- role: worker
+  image: kindest/node:v1.35.0
+  extraMounts:
+  - hostPath: /dev/nvidia2
+    containerPath: /dev/nvidia2
+    propagation: HostToContainer
+  - hostPath: /dev/nvidiactl
+    containerPath: /dev/nvidiactl
+    propagation: HostToContainer
+  - hostPath: /dev/nvidia-uvm
+    containerPath: /dev/nvidia-uvm
+    propagation: HostToContainer
+  - hostPath: /dev/nvidia-modeset
+    containerPath: /dev/nvidia-modeset
+    propagation: HostToContainer
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so.1
+    propagation: HostToContainer
+  - hostPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+    containerPath: /usr/lib/x86_64-linux-gnu/libnvidia-ml.so
+    propagation: HostToContainer
+  labels:
+    az: us-east-1b
+    size: p3.2xlarge
+    type: ondemand
+    gpu.vendor: nvidia
